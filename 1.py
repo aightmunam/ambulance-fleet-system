@@ -6,10 +6,6 @@ import random
 import math
 
 
-
-
-
-
 class AStarGraph(object):
 
 	def __init__(self):
@@ -37,10 +33,9 @@ class AStarGraph(object):
 		return g
 
 	def heuristic(self, start, goal):
-		dx = (start[0] - goal[0])**2
-		dy = (start[1] - goal[1])**2
+		dx = (start[0] - goal[0]) ** 2
+		dy = (start[1] - goal[1]) ** 2
 		return math.sqrt((dx + dy))
-
 
 	def get_vertex_neighbours(self, pos):
 		n = []
@@ -72,7 +67,6 @@ def Scheduler(start, goals, graph):
 	while len(g) > 0:
 		goalPath, c = AStarSearch(S, (g[0][0], g[0][1]), graph)
 		S = goalPath.pop()
-		print(S)
 		overallPath.extend(goalPath)
 		overallCost += c
 		bucket.append(g.pop(0))  # goal has been achieved
@@ -102,7 +96,7 @@ def AStarSearch(start, end, graph):
 		currentFscore = None
 		for pos in openVertices:
 			if current is None or F[pos] < currentFscore:
-				if F[pos] is not 10000:   # Obstacles cannot be traversed
+				if F[pos] is not 10000:  # Obstacles cannot be traversed
 					currentFscore = F[pos]
 					current = pos
 
@@ -150,13 +144,13 @@ def AStarSearch(start, end, graph):
 
 if __name__ == "__main__":
 	Patients = []
-	# num = input("Number of patients:")
-	# for i in range(int(num)):
-	# 	print("Location (x,y) of Patient " + str(i) + " : ")
-	# 	a = input("x: ")
-	# 	b = input("y: ")
-	# 	c = input("Priority (1-10) of Patient " + str(i) + " : ")
-	# 	Patients.append((int(a), int(b), int(c), 0))
+	num = input("Number of patients:")
+	for i in range(int(num)):
+		print("Location (x,y) of Patient " + str(i) + " : ")
+		a = input("x: ")
+		b = input("y: ")
+		c = input("Priority (1-10) of Patient " + str(i) + " : ")
+		Patients.append((int(a), int(b), int(c), 0))
 
 	Patients = [(27, 14, 0, 0), (18, 4, 0, 0), (7, 9, 0, 0)]
 
@@ -181,9 +175,8 @@ if __name__ == "__main__":
 				xgoal.append(graph.goals[j][0])
 				ygoal.append(graph.goals[j][1])
 
-
 	plt.scatter(xgoal, ygoal, s=90, color="green")
-	txt = range(0+1, len(xgoal)+1)
+	txt = range(0 + 1, len(xgoal) + 1)
 	for i, j in enumerate(txt):
 		ax.annotate(j, (xgoal[i], ygoal[i]))
 
